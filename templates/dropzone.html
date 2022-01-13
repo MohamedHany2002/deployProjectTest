@@ -1,0 +1,19 @@
+
+
+
+{%extends 'base.html' %}
+
+
+{%block content%}
+<form action="/fileUpload" method="POST" id="drop" class="dropzone dz" enctype="multipart/form-data">
+  {%csrf_token%}
+    <div class="fallback">
+      <input id="file" name="file" type="file" multiple />
+    </div>
+    <br>
+    <br><br>
+          
+
+  </form>
+  <a href="/dropzone">go home</a>
+{%endblock%} 

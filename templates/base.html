@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{%static 'files/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'files/main.css' %}">
+
+    <script src="{% static 'main.css' %}" defer></script>
+
+    <!-- Font awesome -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="{%static 'files/font.css' %}">
+    <script src="{% static 'files/drop.js' %}" defer></script>
+
+    <link rel="stylesheet" href="{%static 'files/drop.css' %}">
+
+    <!-- custom css & js -->
+    <script src="{% static 'files/main.js' %}" defer></script>
+    <script src="{% static 'index.js' %}" defer></script>
+
+<style>
+  body{
+    background-color: #f8f8ff;
+}
+
+
+.dz{
+    border-color: aquamarine !important;
+    border:dashed !important;
+    border-radius: 10px;
+}
+
+
+.dz:hover{
+    background-color: aliceblue;
+}
+</style>    
+
+    <title>Rating site | {% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <div class="container mt-3">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+
+    {%block script%}
+      
+
+    {%endblock%}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <script src="{%static 'files/jquery.js' %}"></script>
+    <script src="{%static 'files/proper.js' %}"></script>
+    <script src="{%static 'files/bootjs.js' %}}"></script>
+    <script>
+
+      $(function(){
+    Dropzone.autoDiscover = false;
+  
+
+  var myDropzone = new Dropzone(".dropzone", { 
+     maxFilesize: 10,
+     acceptedFiles: ".jpeg,.jpg,.png,.gif",
+     addRemoveLinks: true,
+     removedfile: function(file) {
+       var fileName = file.name; 
+         
+       $.ajax({
+         type: 'POST',
+         url: '/delete_obj',
+         data: {name: fileName,request: 'delete'},
+         sucess: function(data){
+            console.log('success: ' + data);
+         }
+       });
+
+       var _ref;
+        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+     }
+  });
+})
+    </script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+  </body>
+</html>

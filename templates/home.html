@@ -1,0 +1,28 @@
+
+
+
+{%extends 'base.html' %}
+
+
+{%block content%}
+
+
+  <div id="spinner-box" class="text-center mt-5" style="display: block;">
+    <div  class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+       
+<div id="data-box" class="text-center mt-5">
+
+</div>
+
+
+{%include 'search.html' %}
+  
+{%block script%}
+{%include 'search.js' %}
+
+{%endblock%}
+
+{%endblock%} 
